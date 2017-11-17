@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <title>Reclamações App</title>
+
+    </head>
+    <body>
+        <h2>Cadastro de Reclamação</h2>
+        <form method="post">
+            <div>
+                <label for="nome">Nome: </label>
+                <input type="text" placeholder="Vinicius Loreto Ferreira" name="nome"/><br/><br/>
+            </div>  
+            <div>  
+                <label for="idade">Idade: </label>
+                <input type="Number"  placeholder="23" name="idade" /><br/><br/>
+            </div>
+            <div> 
+                <label for="email">Email: </label>
+                <input type="email" placeholder="vinicius.loreto@t2s.com.br" name="email"  /><br/><br/>
+            </div>
+            <div>
+                <label for="data">Data: </label>   
+                <input type="date" value="" name="data"/><br/><br/>
+            </div>
+            <div>
+                <label for="reclamacao">Digite sua Reclamação: </label><br/>
+                <textarea name="reclamacao" rows="3"></textarea><br/><br/>
+            </div>
+            <button type="submit">Salvar</button>
+        </form>
+       
+    </body>
+</html>
