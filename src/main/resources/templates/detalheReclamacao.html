@@ -1,0 +1,41 @@
+<html xmlns:th="http://thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <title>Reclamações</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" />
+    </head>
+    <body>
+        <h1 style=" text-align: center"> Reclamação </h1>
+        <a class="btn btn-success" href="/reclamacoes">Lista de Reclamações</a>
+        
+       
+                                          
+        <div class="container">        
+                <p>Nome: <span th:text="${reclamacao.nome}"></span></p>
+                <p>Idade: <span th:text="${reclamacao.idade}"></span></p>
+                <p>Email: <span th:text="${reclamacao.email}"></span></p>
+                <p>Data: <span th:text="${reclamacao.data}"></span></p>
+                <p>Reclamação: <span th:text="${reclamacao.descricao}"></span></p>
+                
+         
+            <hr/>
+            <form method="post">
+               Nome:  <input type="text" value="" name="nomeComentario"/><br/><br/>
+               Comentario: <input type="text" value="" name="comentario1"/><br/><br/>
+                <button type="submit" class="btn btn-success">Adicionar Comentario</button>
+                    
+            </form>
+        </div>
+         <H5 style="text-align: center"> COMENTARIOS : </H5>
+         <hr/>
+        <div  class="container" th:each="comentario : ${comentarios}">
+           
+            <p>Nome: <span th:text="${comentario.nomeComentario}"></span></p>
+            <p>Comentario: <span th:text="${comentario.comentario1}"></span></p>
+           <hr/>
+        </div>  
+        
+    </body>
+</html>

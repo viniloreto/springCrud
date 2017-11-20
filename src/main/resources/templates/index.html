@@ -1,5 +1,42 @@
-<html>
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <title>RECLAME AQUI!!!!!</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" />
+        
+    </head>
     <body>
-        <h3>  TESTAAAAANDOO.........SPRING   </h3>
+        <h2>  LISTA DE RECLAMAÇÕES  </h2><br/><br/>
+        
+        <h3><a class="btn btn-success" href="/cadastrarReclamacao">FAÇA SUA RECLAMAÇÃO</a></h3><br/><br/>
+        <div class="container">
+        <table class="table table-hover">
+
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                    <th>Email</th>
+                    <th>Data</th>
+                    <th>Reclamação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="reclamacao : ${reclamacoes}">
+                    <td><span th:text="${reclamacao.nome}"></span></td>
+                    <td><span th:text="${reclamacao.idade}"></span></td>
+                    <td><span th:text="${reclamacao.email}"></span></td>
+                    <td><span th:text="${reclamacao.data}"></span></td>
+                    <td><a th:href="${(#mvc.url('RC#detalheReclamacao').arg(0, reclamacao.codigo)).build()}"><span th:text="${reclamacao.descricao}"></span></a></td>
+                </tr>
+            </tbody>
+
+        </table>
+            </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2//js/bootstrap.min.js"></script>
     </body>
 </html>
