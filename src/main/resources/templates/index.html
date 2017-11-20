@@ -23,6 +23,7 @@
                     <th>Data</th>
                     <th>Reclamação</th>
                     <th>Deletar</th>
+                    <th>Editar</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,6 +34,7 @@
                     <td><span th:text="${reclamacao.data}"></span></td>
                     <td><a th:href="${(#mvc.url('RC#detalheReclamacao').arg(0, reclamacao.codigo)).build()}"><span th:text="${reclamacao.descricao}"></span></a></td>
                     <td><a class="btn btn-success" th:href="${(#mvc.url('RC#deletarReclamacao').arg(0, reclamacao.codigo)).build()}">Deletar</a></td>
+                     <td><a class="btn btn-success" th:href="${'/edit/' + reclamacao.codigo}">Edit</a></td>
                 </tr>
             </tbody>
 

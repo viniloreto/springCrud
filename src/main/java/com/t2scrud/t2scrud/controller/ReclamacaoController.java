@@ -7,6 +7,7 @@ import com.t2scrud.t2scrud.repository.ReclamacaoRepository;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,10 +43,25 @@ public class ReclamacaoController {
         mv.addObject("reclamacoes", reclamacoes);
         return mv;
     }
+    @RequestMapping("/edit/{codigo}")
+    public String edit(@PathVariable long codigo, Model model){   
+        if(rr.findByCodigo(codigo)!= null){
+        model.addAttribute("reclamacao", rr.getReclamacaoByCodigo(codigo));
+        return "reclamacaoForm";        
+        } return "redirect:/reclamacoes";
+    }
+    
+     @RequestMapping(value="/reclamacoes", method=RequestMethod.POST)
+    public String editsave(Reclamacao reclamacao){
+        
+        rr.save(reclamacao);
+        return "redirect:/reclamacoes";
+    }
    
     
     @RequestMapping(value="/{codigo}", method=RequestMethod.GET)
     public ModelAndView detalheReclamacao(@PathVariable("codigo") long codigo){
+        if(rr.findByCodigo(codigo)!=null){
         Reclamacao reclamacao = rr.findByCodigo(codigo);
         ModelAndView mv = new ModelAndView("detalheReclamacao");
         mv.addObject("reclamacao", reclamacao);
@@ -53,6 +69,8 @@ public class ReclamacaoController {
         Iterable<Comentario> comentarios = cr.findByReclamacao(reclamacao);
         mv.addObject("comentarios", comentarios);
         return mv;
+        }ModelAndView mv1= new ModelAndView("index");
+        return mv1;
     }
     
      @RequestMapping(value="/{codigo}", method=RequestMethod.POST)
@@ -71,21 +89,14 @@ public class ReclamacaoController {
     @RequestMapping("/deletarReclamacao")
     public String deletarReclamacao(long codigo){
         Reclamacao reclamacao = rr.findByCodigo(codigo);
+        Iterable<Comentario> comentario = cr.findByReclamacao(reclamacao);
+        cr.delete(comentario);
         rr.delete(reclamacao);
         return "redirect:/reclamacoes";
     }
     
     
-   @RequestMapping("/deletarComentario")
-	public String deletarComentario(String rg){
-		Comentario comentario = cr.findByRg(rg);
-		cr.delete(comentario);
-		
-		Reclamacao reclamacao = comentario.getReclamacao();
-		long codigoLong = reclamacao.getCodigo();
-		String codigo = "" + codigoLong;
-		return "redirect:/" + codigo;
-	}
+   
     
 }
     
