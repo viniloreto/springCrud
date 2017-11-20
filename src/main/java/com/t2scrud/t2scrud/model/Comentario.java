@@ -11,25 +11,23 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class Comentario {
 
-private static final long serialVersionUID = 1L;
     
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)  
-    private long codigo;
- @NotEmpty   
-private String nomeComentario;
- @NotEmpty
+    private String rg;
+  
+   private String nomeComentario;
+
 private String comentario1;
 
 @ManyToOne
 private Reclamacao reclamacao;
 
-    public long getCodigo() {
-        return codigo;
+    public String getRg() {
+        return rg;
     }
 
-    public void setCodigo(long codigo) {
-        this.codigo = codigo;
+    public void setRg(String rg) {
+        this.rg = rg;
     }
 
     public String getNomeComentario() {

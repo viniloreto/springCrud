@@ -67,4 +67,25 @@ public class ReclamacaoController {
        attributes.addFlashAttribute("mensagem","Comentario registrado com sucesso");
         return "redirect:/{codigo}";
     }
+    
+    @RequestMapping("/deletarReclamacao")
+    public String deletarReclamacao(long codigo){
+        Reclamacao reclamacao = rr.findByCodigo(codigo);
+        rr.delete(reclamacao);
+        return "redirect:/reclamacoes";
+    }
+    
+    
+   @RequestMapping("/deletarComentario")
+	public String deletarComentario(String rg){
+		Comentario comentario = cr.findByRg(rg);
+		cr.delete(comentario);
+		
+		Reclamacao reclamacao = comentario.getReclamacao();
+		long codigoLong = reclamacao.getCodigo();
+		String codigo = "" + codigoLong;
+		return "redirect:/" + codigo;
+	}
+    
 }
+    

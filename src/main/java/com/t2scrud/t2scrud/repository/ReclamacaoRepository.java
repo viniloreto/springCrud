@@ -6,5 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 public interface ReclamacaoRepository extends CrudRepository<Reclamacao, String> {
 
     Reclamacao findByCodigo(long codigo);
+    
 
 }

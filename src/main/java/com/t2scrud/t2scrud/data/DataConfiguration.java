@@ -15,7 +15,7 @@ public class DataConfiguration {
        
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/t2scrud");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/t2scrud1");
         dataSource.setUsername("root");
         dataSource.setPassword("1234");
         return dataSource;

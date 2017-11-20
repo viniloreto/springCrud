@@ -23,8 +23,9 @@
             <hr/>
             <form method="post">
                Nome:  <input type="text" value="" name="nomeComentario"/><br/><br/>
+               RG:  <input type="text" value="" name="rg"/><br/><br/>
                Comentario: <input type="text" value="" name="comentario1"/><br/><br/>
-                <button type="submit" class="btn btn-success">Adicionar Comentario</button>
+               <button type="submit" class="btn btn-success">Adicionar Comentario</button>
                     
             </form>
         </div>
@@ -33,7 +34,9 @@
         <div  class="container" th:each="comentario : ${comentarios}">
            
             <p>Nome: <span th:text="${comentario.nomeComentario}"></span></p>
+            <p>RG: <span th:text="${comentario.rg}"></span></p>
             <p>Comentario: <span th:text="${comentario.comentario1}"></span></p>
+           
            <hr/>
         </div>  
         
